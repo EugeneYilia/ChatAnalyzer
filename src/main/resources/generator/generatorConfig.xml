@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 此文件只是mybatis 的数据库自动生成映射文件，实体类，接口等方法的，发布时，不用提交此文件，也可删除 -->
+<generatorConfiguration>
+    <!-- 数据库驱动:用于在生成映射文件，实体类，接口等方法时进行数据库的连接-->
+    <classPathEntry
+            location="C:\Users\58307\.m2\repository\mysql\mysql-connector-java\5.1.39\mysql-connector-java-5.1.39.jar"/>
+    <!--一个数据库一个context-->
+    <context id="neu_whole_member" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!--**阻止**生成注释，默认为false-->
+            <property name="suppressDate" value="true"/>
+            <!--**阻止**生成的注释包含时间戳，默认为false-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1/chat_analyzer?useUnicode=true&amp;characterEncoding=utf-8"
+                        userId="root" password="liuyichen"/>
+
+        <!--这个元素的配置来指定JDBC类型和Java类型如何转换
+        可以配置的属性为forceBigDecimals，该属性可以控制是否强制DECIMAL和NUMERIC类型的字段转换为Java类型的java.math.BigDecimal,默认值为false，一般不需要配置。
+        -->
+        <!--
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        -->
+
+        <!-- 生成模型的包名和位置-->
+        <javaModelGenerator targetPackage="com.EugeneStudio.ChatAnalyzer.model" targetProject="src/main/java">
+            <!--实际测试过程中，并不能将数据库的名字再创建一个包然后将生成的类放在它下面-->
+            <property name="enableSubPackages" value="false"/>
+            <!--对String类型的数据 删除了原始字符串头部和尾部的空格-->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources">
+            <!--实际测试过程中，并不能将数据库的名字再创建一个包然后将生成的类放在它下面-->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator targetPackage="com.EugeneStudio.ChatAnalyzer.mapper"
+                             targetProject="src/main/java"
+                             type="XMLMAPPER">
+            <!--实际测试过程中，并不能将数据库的名字再创建一个包然后将生成的类放在它下面-->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
+        <!-- enableCountByExample 指定是否生成动态查询总条数语句 -->
+        <!-- enableUpdateByExample 指定是否生成动态修改语句（只修改对象中不为空的属性） -->
+        <!-- enableDeleteByExample 指定是否生成动态删除语句 -->
+        <!-- enableSelectByExample 指定是否生成动态查询语句 -->
+        <!-- selectByExampleQueryId 对DBA在运行时对sql查询的追踪有帮助，如果这个语句为true，需要指定一个独特的id对每一次不同的由MBG生成的查询-->
+        <table tableName="user"
+               domainObjectName="User"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="user_basic_information"
+               domainObjectName="User_basic_information"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="comment"
+               domainObjectName="Comment"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+    </context>
+</generatorConfiguration>

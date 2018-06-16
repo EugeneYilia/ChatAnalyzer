@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.EugeneStudio.ChatAnalyzer.mapper.User_basic_informationMapper" >
+  <resultMap id="BaseResultMap" type="com.EugeneStudio.ChatAnalyzer.model.User_basic_information" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="emotion_state" property="emotionState" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.EugeneStudio.ChatAnalyzer.model.User_basic_informationWithBLOBs" extends="BaseResultMap" >
+    <result column="basic_information_picture" property="basicInformationPicture" jdbcType="LONGVARBINARY" />
+    <result column="emotion_picture" property="emotionPicture" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    basic_information_picture, emotion_picture
+  </sql>
+  <insert id="insert" parameterType="com.EugeneStudio.ChatAnalyzer.model.User_basic_informationWithBLOBs" >
+    insert into user_basic_information (id, time, emotion_state, 
+      basic_information_picture, emotion_picture
+      )
+    values (#{id,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{emotionState,jdbcType=VARCHAR}, 
+      #{basicInformationPicture,jdbcType=LONGVARBINARY}, #{emotionPicture,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.EugeneStudio.ChatAnalyzer.model.User_basic_informationWithBLOBs" >
+    insert into user_basic_information
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="emotionState != null" >
+        emotion_state,
+      </if>
+      <if test="basicInformationPicture != null" >
+        basic_information_picture,
+      </if>
+      <if test="emotionPicture != null" >
+        emotion_picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="emotionState != null" >
+        #{emotionState,jdbcType=VARCHAR},
+      </if>
+      <if test="basicInformationPicture != null" >
+        #{basicInformationPicture,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="emotionPicture != null" >
+        #{emotionPicture,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

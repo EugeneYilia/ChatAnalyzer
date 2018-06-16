@@ -1,0 +1,19 @@
+create table user(
+id varchar(20) primary key,
+password varchar(20),
+name varchar(20)
+)default charset=utf8;
+
+create table comment(
+emotion_state varchar(20) primary key,
+comment varchar(20)
+)default charset=utf8;
+
+create table user_basic_information(
+id varchar(20),
+time varchar(20),
+basic_information_picture blob,
+emotion_picture blob,
+emotion_state varchar(20),
+foreign key (id) references user(id)
+)default charset=utf8;
